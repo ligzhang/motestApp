@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+		.main {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		}
+	
+			.mui-card-content {
+
+				display: flex;
+				justify-content: center;
+				align-items:center ;
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+				background: red;
+				font-size: 120px;
+				font-weight: 600;
+				color:white;
+			}
+	
+		</style>
+	</head>
+
+	<body>
+	<div class="main">
+	
+	<!--内容区-->
+	<div class="mui-card-content" onclick="back()">
+			2
+	</div>
+	
+</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			function back(){
+				mui.openWindow({
+					 url: '../client_index.html', 
+    						
+				})
+			
+			}
+		</script>
+	</body>
+
+</html>
