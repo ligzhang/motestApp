@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="js/echarts.min.js"></script>
+    <script src="js/axios.min.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <button type="button" name="button">重置</button>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById("main"))
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: "敏捷估分结果"
+            },
+            tooltip: {},
+            legend: {
+                data: ["分值"]
+            },
+            xAxis: {
+                data: ["1分", "2分", "3分", "5分", "8分", "13分", "20分"]
+            },
+            yAxis: {},
+            series: [
+                {
+                    name: "销量",
+                    type: "bar",
+                    data: [5, 20, 36, 10, 10, 20]
+                }
+            ]
+        }
+        axios
+            .get("/sum")
+            .then(function (response) {
+                console.log(response)
+                option.series[0].data = response.data
+                myChart.setOption(option)
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+        // 使用刚指定的配置项和数据显示图表。
+
+        function reset() {
+            axios
+                .get("/reset")
+                .then(res => {
+                    console.log(1111)
+                    location.href = "client_index.html"
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+
+        let button = document.querySelector("button")
+        button.addEventListener("click", reset)
+    </script>
+</body>
+
+</html>
